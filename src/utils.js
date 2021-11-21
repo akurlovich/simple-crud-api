@@ -10,6 +10,7 @@ function getReqData(req) {
           // listen till the end
           req.on("end", () => {
               // send back the data
+              // console.log(JSON.parse(body))
               resolve(body);
           });
       } catch (error) {

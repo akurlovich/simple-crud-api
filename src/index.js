@@ -61,11 +61,12 @@ const server = http.createServer(async (req, res) => {
             // get the id from the url
             const id = req.url.split("/")[2];
             // update todo
-            let updatedPerson = await new Person().updatePerson(id);
+            let personData = await getReqData(req);
+            let updatedPerson = await new Person().updatePerson(id, personData);
             // set the status code and content-type
             res.writeHead(200, { "Content-Type": "application/json" });
             // send the message
-            res.end(JSON.stringify(updated_todo));
+            res.end(JSON.stringify(updatedPerson));
         } catch (error) {
             // set the status code and content type
             res.writeHead(404, { "Content-Type": "application/json" });
