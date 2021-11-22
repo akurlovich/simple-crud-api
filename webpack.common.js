@@ -5,6 +5,12 @@ const path = require('path');
    entry: {
      app: './src/index.js',
    },
+   resolve: {
+    fallback: {
+        "http": require.resolve("stream-http"),
+        "buffer": require.resolve("buffer/")
+    },
+  },
    plugins: [
      new HtmlWebpackPlugin({
        title: 'Production',
