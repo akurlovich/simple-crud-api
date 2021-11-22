@@ -56,7 +56,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     // /api/todos/:id : UPDATE
-    else if (req.url.match(/\/person\/./) && req.method === "PATCH") {
+    else if (req.url.match(/\/person\/./) && req.method === "PUT") {
         try {
             // get the id from the url
             const id = req.url.split("/")[2];

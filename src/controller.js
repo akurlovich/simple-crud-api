@@ -1,4 +1,4 @@
-const { v4 } = require("uuid");
+const { v4, validate } = require("uuid");
 // const data = require("./data");
 
 const data = [];
@@ -14,6 +14,9 @@ class Controller {
   async getPerson(id) {
     return new Promise((resolve, reject) => {
       // get the todo
+      if (!validate(id)) {
+        reject('No valid person id ')
+      }
       let person = data.find((person) => person.id === id);
       if (person) {
         // return the todo
@@ -45,6 +48,9 @@ class Controller {
   async updatePerson(id, personNewData) {
     return new Promise((resolve, reject) => {
       // get the todo.
+      if (!validate(id)) {
+        reject('No valid person id ')
+      }
       const personIndex = data.findIndex((person) => person.id === id);
       // console.log(personIndex)
       // if no todo, return an error
@@ -69,6 +75,9 @@ class Controller {
   // deleting a todo
   async deletePerson(id) {
     return new Promise((resolve, reject) => {
+      if (!validate(id)) {
+        reject('No valid person id ')
+      }
       // get the todo
       // let person = data.find((person) => person.id === id);
       const personIndex = data.findIndex((person) => person.id === id);
