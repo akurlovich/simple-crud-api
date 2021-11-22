@@ -70,13 +70,15 @@ class Controller {
   async deletePerson(id) {
     return new Promise((resolve, reject) => {
       // get the todo
-      let person = data.find((person) => person.id === id);
+      // let person = data.find((person) => person.id === id);
+      const personIndex = data.findIndex((person) => person.id === id);
       // if no todo, return an error
-      if (!person) {
+      if (personIndex === -1) {
         reject(`No person with id ${id} found`);
       }
       // else, return a success message
-      resolve(`Person deleted successfully`);
+      resolve(`Person ${data[personIndex]} deleted successfully`);
+      data.splice(personIndex, 1);
     });
   }
 }
