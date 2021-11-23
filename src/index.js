@@ -84,7 +84,7 @@ const server = http.createServer(async (req, res) => {
       // create the todo
       let person = await new Person().createPerson(JSON.parse(personData));
       // set the status code and content-type
-      res.writeHead(200, { "Content-Type": "application/json" });
+      res.writeHead(201, { "Content-Type": "application/json" });
       //send the todo
       res.end(JSON.stringify(person));
 
