@@ -30,8 +30,23 @@ class Controller {
 
   // creating a todo
   async createPerson(person) {
-    return new Promise((resolve, _) => {
+    return new Promise((resolve, reject) => {
       // create a todo, with random id and data sent
+      // if (person.name && person.age && person.hobbies) {
+      //   reject(`Person field 'name', 'age' and 'hobbies' are required`);
+      // };
+      if (!person.name) {
+        reject(`Person field 'name', 'age' and 'hobbies' are required`);
+      };
+
+      if (!person.age) {
+        reject(`Person field 'name', 'age' and 'hobbies' are required`);
+      };
+
+      if (!person.hobbies) {
+        reject(`Person field 'name', 'age' and 'hobbies' are required`);
+      };
+
       let newPerson = {
         id: v4(),
         ...person,
@@ -86,7 +101,7 @@ class Controller {
         reject(`No person with id ${id} found`);
       }
       // else, return a success message
-      resolve(`Person ${data[personIndex]} deleted successfully`);
+      resolve(`Person ${id} deleted successfully`);
       data.splice(personIndex, 1);
     });
   }
