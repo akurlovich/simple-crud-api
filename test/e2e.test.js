@@ -10,15 +10,15 @@ describe('Test e2e', () => {
   });
 });
 
-describe('GET /user', function() {
-  it('responds with json', function(done) {
-    request(http)
-      .get('http://localhost:4000/')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200, done);
-  });
-});
+// describe('GET /user', function() {
+//   it('responds with json', function(done) {
+//     request(http)
+//       .get('http://localhost:4000/')
+//       .set('Accept', 'application/json')
+//       .expect('Content-Type', /json/)
+//       .expect(200, done);
+//   });
+// });
 
 // test('Get all persons', () => {
 //   let data = "";
