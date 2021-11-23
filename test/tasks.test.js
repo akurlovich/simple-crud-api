@@ -9,12 +9,13 @@ const TEST_PERSON_DATA = {
   hobbies: ['tennis'],
 };
 
-const TEST_BOARD_DATA = {
-  title: 'Autotest board',
-  columns: [
-    { title: 'Backlog', order: 1 },
-    { title: 'Sprint', order: 2 }
-  ]
+let person;
+
+const TEST_UPDATE_PERSON_DATA = {
+  id: '6cf9de3e-b621-4842-b41b-433ade67dc22',
+  name: "Anna",
+  age: "11",
+  hobbies: ['swimming'],
 };
 
 // describe('Tasks suite', () => {
@@ -114,7 +115,7 @@ const TEST_BOARD_DATA = {
 
     test('should get a person by id', async () => {
       // Setup
-      let person;
+      // let person;
 
       await request
         .post('/person')
@@ -146,65 +147,65 @@ const TEST_BOARD_DATA = {
 
       // Test
       await request
-        .get('/person')
+        .get(`/person/${person.id}`)
         .set('Accept', 'application/json')
         .expect(200)
         .expect('Content-Type', /json/)
         .then(res => {
           console.log('get id', res.body)
           console.log('person id', person)
-          expect(res.body[0].name).toBe(person.name);
+          expect(res.body.name).toBe(person.name);
         });
     });
   });
 
-  // describe('PUT', () => {
-  //   it('should update task successfully', async () => {
-  //     // Setup
-  //     let addedTask;
+  describe('PUT', () => {
+    it('should update task successfully', async () => {
+      // Setup
+      // let addedTask;
 
-  //     await request
-  //       .post(routes.tasks.create(testBoardId))
-  //       .set('Accept', 'application/json')
-  //       .send(TEST_TASK_DATA)
-  //       .then(res => {
-  //         addedTask = res.body;
-  //       });
+      // await request
+      //   .post(routes.tasks.create(testBoardId))
+      //   .set('Accept', 'application/json')
+      //   .send(TEST_TASK_DATA)
+      //   .then(res => {
+      //     addedTask = res.body;
+      //   });
 
-  //     const updatedTask = {
-  //       ...addedTask,
-  //       title: 'Autotest updated task'
-  //     };
+      // const updatedTask = {
+      //   ...addedTask,
+      //   title: 'Autotest updated task'
+      // };
 
-  //     // Test
-  //     await request
-  //       .put(routes.tasks.update(updatedTask.boardId, updatedTask.id))
-  //       .set('Accept', 'application/json')
-  //       .send(updatedTask)
-  //       .expect(200)
-  //       .expect('Content-Type', /json/);
+      // Test
+      await request
+        .put(`/person/${person.id}`)
+        .set('Accept', 'application/json')
+        .send(TEST_UPDATE_PERSON_DATA)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .then(res => {
+          expect(res.body.name).toBe('Anna');
+        });
 
-  //     await request
-  //       .get(routes.tasks.getById(updatedTask.boardId, updatedTask.id))
-  //       .set('Accept', 'application/json')
-  //       .expect(200)
-  //       .expect('Content-Type', /json/)
-  //       .then(res => jestExpect(res.body).toMatchObject(updatedTask));
-  //   });
-  // });
+      // await request
+      //   .get(routes.tasks.getById(updatedTask.boardId, updatedTask.id))
+      //   .set('Accept', 'application/json')
+      //   .expect(200)
+      //   .expect('Content-Type', /json/)
+      //   .then(res => jestExpect(res.body).toMatchObject(updatedTask));
+    });
+  });  
 
-  // describe('DELETE', () => {
-  //   it('should delete task successfully', async () => {
-  //     await request
-  //       .get(routes.tasks.getById(testBoardId, testTaskId))
-  //       .expect(200);
-  //     await request
-  //       .delete(routes.tasks.delete(testBoardId, testTaskId))
-  //       .then(res => expect(res.status).oneOf([200, 204]));
+  describe('DELETE', () => {
+    it('should delete task successfully', async () => {
+      await request
+        .delete(`/person/${person.id}`)
+        .then(res => expect(res.status).toBe(200));
 
-  //     await request
-  //       .get(routes.tasks.getById(testBoardId, testTaskId))
-  //       .expect(404);
-  //   });
-  // });
+      await request
+        .get(`/person/${person.id}`)
+        .expect(404);
+    });
+  });
 // });
