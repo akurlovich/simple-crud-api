@@ -45,7 +45,7 @@ describe('GET', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .then(res => {
-        expect(res.body.length).toBe(2);
+        expect(res.body.length).toBeGreaterThan(1);
       });
   });
 
