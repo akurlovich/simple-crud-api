@@ -36,6 +36,12 @@ npm run start:prod
 
 
 ```
+`- In fist terminal start server:`
+
+npm run start:dev
+
+`- In second terminal run tests:`
+
 npm run test
 ```
 
