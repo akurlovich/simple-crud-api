@@ -15,7 +15,7 @@ class Controller {
     return new Promise((resolve, reject) => {
       // get the todo
       if (!validate(id)) {
-        reject('No valid person id ')
+        reject('No valid person id')
       }
       let person = data.find((person) => person.id === id);
       if (person) {
@@ -23,7 +23,7 @@ class Controller {
         resolve(person);
       } else {
         // return an error
-        reject(`Person with id ${id} not found `);
+        reject(`Person with id ${id} not found`);
       }
     });
   }
@@ -64,7 +64,7 @@ class Controller {
     return new Promise((resolve, reject) => {
       // get the todo.
       if (!validate(id)) {
-        reject('No valid person id ')
+        reject('No valid person id')
       }
       const personIndex = data.findIndex((person) => person.id === id);
       // console.log(personIndex)
@@ -91,7 +91,7 @@ class Controller {
   async deletePerson(id) {
     return new Promise((resolve, reject) => {
       if (!validate(id)) {
-        reject('No valid person id ')
+        reject('No valid person id')
       }
       // get the todo
       // let person = data.find((person) => person.id === id);

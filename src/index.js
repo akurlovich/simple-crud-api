@@ -30,10 +30,17 @@ const server = http.createServer(async (req, res) => {
       // send the data
       res.end(JSON.stringify(person));
     } catch (error) {
-      // set the status code and content-type
-      res.writeHead(404, { "Content-Type": "application/json" });
-      // send the error
-      res.end(JSON.stringify({ message: error }));
+      if (error === 'No valid person id') {
+        // set the status code and content-type
+        res.writeHead(400, { "Content-Type": "application/json" });
+        // send the error
+        res.end(JSON.stringify({ message: error }));
+      } else {
+        // set the status code and content-type
+        res.writeHead(404, { "Content-Type": "application/json" });
+        // send the error
+        res.end(JSON.stringify({ message: error }));
+      }
     }
   }
 
@@ -45,14 +52,21 @@ const server = http.createServer(async (req, res) => {
       // delete todo
       let message = await new Person().deletePerson(id);
       // set the status code and content-type
-      res.writeHead(200, { "Content-Type": "application/json" });
+      res.writeHead(204, { "Content-Type": "application/json" });
       // send the message
       res.end(JSON.stringify({ message }));
     } catch (error) {
-      // set the status code and content-type
-      res.writeHead(404, { "Content-Type": "application/json" });
-      // send the error
-      res.end(JSON.stringify({ message: error }));
+      if (error === 'No valid person id') {
+        // set the status code and content-type
+        res.writeHead(400, { "Content-Type": "application/json" });
+        // send the error
+        res.end(JSON.stringify({ message: error }));
+      } else {
+        // set the status code and content-type
+        res.writeHead(404, { "Content-Type": "application/json" });
+        // send the error
+        res.end(JSON.stringify({ message: error }));
+      }
     }
   }
 
@@ -69,10 +83,17 @@ const server = http.createServer(async (req, res) => {
       // send the message
       res.end(JSON.stringify(updatedPerson));
     } catch (error) {
-      // set the status code and content type
-      res.writeHead(404, { "Content-Type": "application/json" });
-      // send the error
-      res.end(JSON.stringify({ message: error }));
+      if (error === 'No valid person id') {
+        // set the status code and content-type
+        res.writeHead(400, { "Content-Type": "application/json" });
+        // send the error
+        res.end(JSON.stringify({ message: error }));
+      } else {
+        // set the status code and content-type
+        res.writeHead(404, { "Content-Type": "application/json" });
+        // send the error
+        res.end(JSON.stringify({ message: error }));
+      }
     }
   }
 
@@ -90,7 +111,7 @@ const server = http.createServer(async (req, res) => {
 
     } catch (error) {
       // set the status code and content type
-      res.writeHead(404, { "Content-Type": "application/json" });
+      res.writeHead(400, { "Content-Type": "application/json" });
       // send the error
       res.end(JSON.stringify({ message: error }));
     }
