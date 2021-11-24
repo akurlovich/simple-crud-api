@@ -9,6 +9,12 @@ const TEST_PERSON_DATA = {
   hobbies: ['tennis'],
 };
 
+const TEST_NO_REQUIRED_PERSON_DATA = {
+  first: "Jon",
+  age: "30",
+  hobbies: ['tennis'],
+};
+
 let person;
 
 const TEST_UPDATE_PERSON_DATA = {
@@ -38,33 +44,29 @@ afterAll(async () => {
 });
 
 describe('GET', () => {
-  test('should get all persons', async () => {
+  test("shouldn't get all persons by wront rout", async () => {
     await request
-      .get('/person')
+      .get('/person11')
       .set('Accept', 'application/json')
-      .expect(200)
+      .expect(404)
       .expect('Content-Type', /json/)
-      .then(res => {
-        expect(res.body.length).toBeGreaterThan(0);
-      });
+
   });
 
 });
 
 describe('POST', () => {
-  test('should create person with status code 201', async () => {
+  test("shouldn't create task with no required field", async () => {
     await request
       .post('/person')
       .set('Accept', 'application/json')
-      .send(TEST_PERSON_DATA)
-      .expect(201)
+      .send(TEST_NO_REQUIRED_PERSON_DATA)
+      .expect(400)
       .expect('Content-Type', /json/)
-      .then(res => {
-        expect(res.statusCode).toBe(201);
-      });
+
   });
 
-  test('should get a person by wrong id', async () => {
+  test('should get a person by not valid id', async () => {
     await request
       .get(`/person/${person.id}123`)
       .set('Accept', 'application/json')
@@ -77,29 +79,22 @@ describe('POST', () => {
 });
 
 describe('PUT', () => {
-  test('should update person successfully', async () => {
-
+  test("shouldn't update person with wrong id", async () => {
     await request
-      .put(`/person/${person.id}`)
+      .put(`/person/${person.id}+1`)
       .set('Accept', 'application/json')
       .send(TEST_UPDATE_PERSON_DATA)
-      .expect(200)
+      .expect(400)
       .expect('Content-Type', /json/)
-      .then(res => {
-        expect(res.body.name).toBe('Anna');
-      });
-
   });
 });
 
 describe('DELETE', () => {
-  test('not valid id for delete person', async () => {
+  test('person not found', async () => {
     await request
-      .delete(`/person/${person.id}123`)
+      .delete(`/person/7cf9de3e-b621-4842-b41b-433ade67dc22`)
       .then(res => {
-        expect(res.status).toBe(400);
+        expect(res.status).toBe(404);
       })
   });
 });
-
-

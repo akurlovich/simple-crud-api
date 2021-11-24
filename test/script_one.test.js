@@ -32,7 +32,7 @@ describe('GET', () => {
 });
 
 describe('POST', () => {
-  test('should create task successfully', async () => {
+  test('should create person successfully', async () => {
     await request
       .post('/person')
       .set('Accept', 'application/json')
@@ -67,7 +67,7 @@ describe('POST', () => {
 });
 
 describe('PUT', () => {
-  test('should update task successfully', async () => {
+  test('should update person successfully', async () => {
     await request
       .put(`/person/${person.id}`)
       .set('Accept', 'application/json')
@@ -81,7 +81,7 @@ describe('PUT', () => {
 });  
 
 describe('DELETE', () => {
-  test('should delete task successfully', async () => {
+  test('should delete person successfully', async () => {
     await request
       .delete(`/person/${person.id}`)
       .then(res => expect(res.status).toBe(204));
