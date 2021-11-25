@@ -52,3 +52,14 @@ npm run test
 - POST `/person` is used to create record about new person and store it in database
 - PUT `/person/${personId}` is used to update record about existing person
 - DELETE `/person/${personId}` is used to delete record about existing person from database
+
+>**NOTE**
+>
+>Data for **POST** and **PUT** method must be in **JSON** and have 3 required field: **name**, **age** and **hobbies**, for example:
+>```
+>{
+	>  "name": "Anna"
+	>  "age": "29",
+	>  "hobbies": "fishing"
+	>}
+>```
