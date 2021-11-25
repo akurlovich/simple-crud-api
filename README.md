@@ -58,8 +58,8 @@ npm run test
 >Data for **POST** and **PUT** method must be in **JSON** and have 3 required field: **name**, **age** and **hobbies**, for example:
 >```
 >{
-	>  "name": "Anna"
-	>  "age": "29",
-	>  "hobbies": "fishing"
-	>}
+>  "name": "Anna"
+>  "age": "29",
+>  "hobbies": "fishing"
+>}
 >```
